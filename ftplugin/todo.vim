@@ -59,11 +59,11 @@ nnoremap <script> <silent> <buffer> <localleader>D :call todo#txt#remove_complet
 " Folding {{{1
 " Options {{{2
 setlocal foldmethod=expr
-setlocal foldexpr=s:todo_fold_level(v:lnum)
-setlocal foldtext=s:todo_fold_text()
+setlocal foldexpr=Todo_fold_level(v:lnum)
+setlocal foldtext=Todo_fold_text()
 
 " s:todo_fold_level(lnum) {{{2
-function! s:todo_fold_level(lnum)
+function! Todo_fold_level(lnum)
     " The match function returns the index of the matching pattern or -1 if
     " the pattern doesn't match. In this case, we always try to match a
     " completed task from the beginning of the line so that the matching
@@ -76,7 +76,7 @@ function! s:todo_fold_level(lnum)
 endfunction
 
 " s:todo_fold_text() {{{2
-function! s:todo_fold_text()
+function! Todo_fold_text()
     " The text displayed at the fold is formatted as '+- N Completed tasks'
     " where N is the number of lines folded.
     return '+' . v:folddashes . ' '
