@@ -97,6 +97,7 @@ function! todo#txt#sort_by_due_date() range
     let l:date_regex = "due:\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}"
     execute a:firstline . "," . a:lastline . "sort /" . l:date_regex . "/ r"
     execute a:firstline . "," . a:lastline . "g!/" . l:date_regex . "/m" . a:lastline
+    execute a:firstline . "," . a:lastline . "g/\\v^x.*/m" . a:lastline
 endfunction
 
 " Increment and Decrement The Priority
