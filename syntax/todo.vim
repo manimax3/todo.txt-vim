@@ -47,10 +47,11 @@ import vim
 from datetime import datetime, timedelta
 now = datetime.today()
 delta = timedelta(days=1)
+rex = now.strftime("%Y-%m-%d")
 for i in range(3):
-	date = now.strftime("%Y-%m-%d")
-	vim.command("syntax match OverDueDate '\\vdue:%s'" % date)
 	now = now - delta
+	rex = rex + "|" + now.strftime("%Y-%m-%d")
+vim.command("syntax match OverDueDate '\\vdue:(%s)'" % rex)
 EOF
 
 " Other priority colours might be defined by the user
