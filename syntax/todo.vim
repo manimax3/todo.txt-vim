@@ -42,6 +42,7 @@ syntax  match  TodoProject    '\(^\|\W\)+[^[:blank:]]\+'  contains=NONE
 syntax  match  TodoContext    '\(^\|\W\)@[^[:blank:]]\+'  contains=NONE
 
 " Match last 3 days as OverDueDate
+if has("python3")
 python3 << EOF
 import vim
 from datetime import datetime, timedelta
@@ -53,6 +54,7 @@ for i in range(3):
 	rex = rex + "|" + now.strftime("%Y-%m-%d")
 vim.command("syntax match OverDueDate '\\vdue:(%s)'" % rex)
 EOF
+endif
 
 " Other priority colours might be defined by the user
 highlight  default  link  TodoDone       Comment
